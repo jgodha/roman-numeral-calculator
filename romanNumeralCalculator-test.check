@@ -1,0 +1,4 @@
+#include "romanNumeralCalculator.h"
+
+#test romanNumeralCalculatorTest
+    ck_assert_str_eq(add("X", "V"), "XV");
