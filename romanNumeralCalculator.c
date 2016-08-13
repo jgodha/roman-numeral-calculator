@@ -8,3 +8,7 @@ char* add(char *a, char *b) {
     strcat(result, b);
     return result;
 }
+
+char* uncompact(char *a) {
+    return a;
+}
