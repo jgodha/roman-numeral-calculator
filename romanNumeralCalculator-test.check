@@ -3,5 +3,21 @@
 #test simplyConcatenatesTwoStrings
     ck_assert_str_eq(add("X", "V"), "XV");
 
-#test uncompactsIV
+#test uncompactsIVToIIII
     ck_assert_str_eq(uncompact("IV"), "IIII");
+
+
+#test uncompactsIXToVIIII
+    ck_assert_str_eq(uncompact("IX"), "VIIII");
+
+#test uncompactsXLToXXXX
+    ck_assert_str_eq(uncompact("XL"), "XXXX");
+
+#test uncompactsXCToLXXXX
+    ck_assert_str_eq(uncompact("XC"), "LXXXX");
+
+#test uncompactsCDToCCCC
+    ck_assert_str_eq(uncompact("CD"), "CCCC");
+
+#test uncompactsCMToDCCCC
+    ck_assert_str_eq(uncompact("CM"), "DCCCC");
