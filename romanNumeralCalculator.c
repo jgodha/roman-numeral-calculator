@@ -2,6 +2,8 @@
 #include "string.h"
 #include "romanNumeralCalculator.h"
 
+const char ROMAN[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
+
 char* add(char *a, char *b) {
     char *result = malloc(sizeof(a) + sizeof(b) + 1);
     strcat(result, a);
@@ -19,7 +21,22 @@ char* uncompact(char *a) {
     return a;
 }
 
+int findIndex(char value) {
+   int i;
+   for (i=0; i<sizeof(ROMAN); i++) {
+  	 if (ROMAN[i] == value) {
+  	    return i;
+  	 }
+   }
+   return(-1);
+}
+
+int compare(const void *a, const void *b) {
+    return findIndex(*(const char *)b) - findIndex(*(const char *)a);
+}
+
 char* sortByValueDescending(char *a) {
+    qsort(a, strlen(a), 1, compare);
     char *b = malloc(sizeof(a) + 1);
     strcpy(b, a);
     return b;

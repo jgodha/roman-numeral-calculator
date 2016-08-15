@@ -6,7 +6,6 @@
 #test uncompactsIVToIIII
     ck_assert_str_eq(uncompact("IV"), "IIII");
 
-
 #test uncompactsIXToVIIII
     ck_assert_str_eq(uncompact("IX"), "VIIII");
 
@@ -21,3 +20,7 @@
 
 #test uncompactsCMToDCCCC
     ck_assert_str_eq(uncompact("CM"), "DCCCC");
+
+#test sortsBySymbolValueInDescendingOrder
+    char input[] = "IXVDLCM";
+    ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
