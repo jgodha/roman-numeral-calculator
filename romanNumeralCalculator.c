@@ -1,5 +1,5 @@
-#include "string.h"
 #include "stdlib.h"
+#include "string.h"
 #include "romanNumeralCalculator.h"
 
 char* add(char *a, char *b) {
@@ -17,4 +17,10 @@ char* uncompact(char *a) {
     if(strcmp(a, "CD") == 0) return "CCCC";
     if(strcmp(a, "CM") == 0) return "DCCCC";
     return a;
+}
+
+char* sortByValueDescending(char *a) {
+    char *b = malloc(sizeof(a) + 1);
+    strcpy(b, a);
+    return b;
 }
