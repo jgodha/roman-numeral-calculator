@@ -45,3 +45,18 @@
 
 #test uncompactsIIIIToIV
       ck_assert_str_eq(compact("IIII"), "IV");
+
+#test uncompactsVIIIIToIX
+      ck_assert_str_eq(compact("VIIII"), "IX");
+
+#test uncompactsXXXXToXL
+      ck_assert_str_eq(compact("XXXX"), "XL");
+
+#test uncompactsLXXXXToXC
+      ck_assert_str_eq(compact("LXXXX"), "XC");
+
+#test uncompactsCCCCToCD
+      ck_assert_str_eq(compact("CCCC"), "CD");
+
+#test uncompactsDCCCCToCM
+      ck_assert_str_eq(compact("DCCCC"), "CM");      

@@ -55,5 +55,10 @@ char* group(char* a) {
 
 char* compact(char *a) {
   if(strcmp(a, "IIII") == 0) return "IV";
+  if(strcmp(a, "VIIII") == 0) return "IX";
+  if(strcmp(a, "XXXX") == 0) return "XL";
+  if(strcmp(a, "LXXXX") == 0) return "XC";
+  if(strcmp(a, "CCCC") == 0) return "CD";
+  if(strcmp(a, "DCCCC") == 0) return "CM";
   return a;
 }
