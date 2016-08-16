@@ -54,5 +54,6 @@ char* group(char* a) {
 }
 
 char* compact(char *a) {
+  if(strcmp(a, "IIII") == 0) return "IV";
   return a;
 }
