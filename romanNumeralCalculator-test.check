@@ -1,7 +1,7 @@
 #include "romanNumeralCalculator.h"
 
 #test simplyConcatenatesTwoStrings
-    ck_assert_str_eq(add("X", "V"), "XV");
+    ck_assert_str_eq(concatenate("X", "V"), "XV");
 
 #test uncompactsIVToIIII
     ck_assert_str_eq(uncompact("IV"), "IIII");

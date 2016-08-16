@@ -2,9 +2,10 @@
 #include "string.h"
 #include "romanNumeralCalculator.h"
 
+/* TODO figure out how to declare these symbols in a Map-like structure */
 const char ROMAN[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-char* add(char *a, char *b) {
+char* concatenate(char *a, char *b) {
     char *result = malloc(sizeof(a) + sizeof(b) + 1);
     strcat(result, a);
     strcat(result, b);
