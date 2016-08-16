@@ -52,3 +52,7 @@ char* group(char* a) {
   if(strcmp(a, "DD") == 0) return "M";
   return a;
 }
+
+char* compact(char *a) {
+  return a;
+}

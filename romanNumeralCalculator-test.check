@@ -25,20 +25,23 @@
     char input[] = "IXVDLCM";
     ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
 
-#test groupsIIIIIASV
+#test groupsIIIIIAsV
         ck_assert_str_eq(group("IIIII"), "V");
 
-#test groupsVVASX
+#test groupsVVAsX
         ck_assert_str_eq(group("VV"), "X");
 
-#test groupsXXXXASL
+#test groupsXXXXAsL
         ck_assert_str_eq(group("XXXXX"), "L");
 
-#test groupsLLASC
+#test groupsLLAsC
         ck_assert_str_eq(group("LL"), "C");
 
-#test groupsCCCCCASD
+#test groupsCCCCCAsD
         ck_assert_str_eq(group("CCCCC"), "D");
 
-#test groupsDDASM
+#test groupsDDAsM
         ck_assert_str_eq(group("DD"), "M");
+
+#test uncompactsIIIIToIV
+      ck_assert_str_eq(compact("IIII"), "IV");
