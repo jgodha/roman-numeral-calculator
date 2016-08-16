@@ -27,3 +27,18 @@
 
 #test groupsIIIIIASV
         ck_assert_str_eq(group("IIIII"), "V");
+
+#test groupsVVASX
+        ck_assert_str_eq(group("VV"), "X");
+
+#test groupsXXXXASL
+        ck_assert_str_eq(group("XXXXX"), "L");
+
+#test groupsLLASC
+        ck_assert_str_eq(group("LL"), "C");
+
+#test groupsCCCCCASD
+        ck_assert_str_eq(group("CCCCC"), "D");
+
+#test groupsDDASM
+        ck_assert_str_eq(group("DD"), "M");

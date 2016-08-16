@@ -45,5 +45,10 @@ char* sortByValueDescending(char *a) {
 
 char* group(char* a) {
   if(strcmp(a, "IIIII") == 0) return "V";
+  if(strcmp(a, "VV") == 0) return "X";
+  if(strcmp(a, "XXXXX") == 0) return "L";
+  if(strcmp(a, "LL") == 0) return "C";
+  if(strcmp(a, "CCCCC") == 0) return "D";
+  if(strcmp(a, "DD") == 0) return "M";
   return a;
 }
