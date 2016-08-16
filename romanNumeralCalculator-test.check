@@ -24,3 +24,6 @@
 #test sortsBySymbolValueInDescendingOrder
     char input[] = "IXVDLCM";
     ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
+
+#test groupsIIIIIASV
+        ck_assert_str_eq(group("IIIII"), "V");

@@ -42,3 +42,7 @@ char* sortByValueDescending(char *a) {
     strcpy(b, a);
     return b;
 }
+
+char* group(char* a) {
+  return a;
+}
