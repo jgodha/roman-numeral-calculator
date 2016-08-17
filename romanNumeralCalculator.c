@@ -5,13 +5,6 @@
 /* TODO figure out how to declare these symbols in a Map-like structure */
 const char ROMAN[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-char* concatenate(char *a, char *b) {
-    char *result = malloc(sizeof(a) + sizeof(b) + 1);
-    strcat(result, a);
-    strcat(result, b);
-    return result;
-}
-
 char* uncompact(char *a) {
     if(strcmp(a, "IV") == 0) return "IIII";
     if(strcmp(a, "IX") == 0) return "VIIII";
@@ -20,6 +13,13 @@ char* uncompact(char *a) {
     if(strcmp(a, "CD") == 0) return "CCCC";
     if(strcmp(a, "CM") == 0) return "DCCCC";
     return a;
+}
+
+char* concatenate(char *a, char *b) {
+    char *result = malloc(sizeof(a) + sizeof(b) + 1);
+    strcat(result, a);
+    strcat(result, b);
+    return result;
 }
 
 int findIndex(char value) {
@@ -61,4 +61,8 @@ char* compact(char *a) {
   if(strcmp(a, "CCCC") == 0) return "CD";
   if(strcmp(a, "DCCCC") == 0) return "CM";
   return a;
+}
+
+char* add(char *a, char *b) {
+  return concatenate(a, b);
 }

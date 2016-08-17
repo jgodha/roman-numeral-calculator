@@ -59,4 +59,7 @@
       ck_assert_str_eq(compact("CCCC"), "CD");
 
 #test uncompactsDCCCCToCM
-      ck_assert_str_eq(compact("DCCCC"), "CM");      
+      ck_assert_str_eq(compact("DCCCC"), "CM");
+
+#test addsTwoRomanNumeralsTogether
+      ck_assert_str_eq(add("CCCLXIX", "DCCCXLV"), "MCCXIV");
