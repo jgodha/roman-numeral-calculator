@@ -1,22 +1,21 @@
 #include "stdlib.h"
 #include "string.h"
+#include "stringUtils.h"
 #include "romanNumeralCalculator.h"
+#include "stdio.h"
 
 /* TODO figure out how to declare these symbols in a Map-like structure */
 const char ROMAN[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-char* uncompact(char *a) {
-    if(strcmp(a, "IV") == 0) return "IIII";
-    if(strcmp(a, "IX") == 0) return "VIIII";
-    if(strcmp(a, "XL") == 0) return "XXXX";
-    if(strcmp(a, "XC") == 0) return "LXXXX";
-    if(strcmp(a, "CD") == 0) return "CCCC";
-    if(strcmp(a, "CM") == 0) return "DCCCC";
-    return a;
-}
+const int NUM_OF_PATTERNS = 6;
+char* COMPACT_PATTERNS[] = { "IV", "IX", "XL", "XC", "CD", "CM" };
+char* UNCOMPACT_PATTERNS[] = { "IIII", "VIIII", "XXXX", "LXXXX", "CCCC", "DCCCC" };
+char* GROUPABLE_PATTERNS[] = { "IIIII", "VV", "XXXXX", "LL", "CCCCC", "DD" };
+char* GROUPS[] = { "V", "X", "L", "C", "D", "M" };
 
 char* concatenate(char *a, char *b) {
     char *result = malloc(sizeof(a) + sizeof(b) + 1);
+    result[0] = '\0';
     strcat(result, a);
     strcat(result, b);
     return result;
@@ -38,31 +37,29 @@ int compare(const void *a, const void *b) {
 
 char* sortByValueDescending(char *a) {
     qsort(a, strlen(a), 1, compare);
-    char *b = malloc(sizeof(a) + 1);
-    strcpy(b, a);
-    return b;
-}
-
-char* group(char* a) {
-  if(strcmp(a, "IIIII") == 0) return "V";
-  if(strcmp(a, "VV") == 0) return "X";
-  if(strcmp(a, "XXXXX") == 0) return "L";
-  if(strcmp(a, "LL") == 0) return "C";
-  if(strcmp(a, "CCCCC") == 0) return "D";
-  if(strcmp(a, "DD") == 0) return "M";
-  return a;
-}
-
-char* compact(char *a) {
-  if(strcmp(a, "IIII") == 0) return "IV";
-  if(strcmp(a, "VIIII") == 0) return "IX";
-  if(strcmp(a, "XXXX") == 0) return "XL";
-  if(strcmp(a, "LXXXX") == 0) return "XC";
-  if(strcmp(a, "CCCC") == 0) return "CD";
-  if(strcmp(a, "DCCCC") == 0) return "CM";
-  return a;
+    return a;
 }
 
 char* add(char *a, char *b) {
-  return concatenate(a, b);
+  int i;
+  for (i=0; i<6; i++) {
+    a = str_replace(a, COMPACT_PATTERNS[i], UNCOMPACT_PATTERNS[i]);
+  }
+
+  for (i=0; i<6; i++) {
+    b = str_replace(b, COMPACT_PATTERNS[i], UNCOMPACT_PATTERNS[i]);
+  }
+
+  char *result = concatenate(a, b);
+
+  result = sortByValueDescending(result);
+
+  for (i=0; i<6; i++) {
+    result = str_replace(result, GROUPABLE_PATTERNS[i], GROUPS[i]);
+  }
+
+  for (i=0; i<6; i++) {
+    result = str_replace(result, UNCOMPACT_PATTERNS[i], COMPACT_PATTERNS[i]);
+  }
+  return result;
 }

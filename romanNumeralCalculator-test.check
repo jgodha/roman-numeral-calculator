@@ -3,63 +3,10 @@
 #test simplyConcatenatesTwoStrings
     ck_assert_str_eq(concatenate("X", "V"), "XV");
 
-#test uncompactsIVToIIII
-    ck_assert_str_eq(uncompact("IV"), "IIII");
-
-#test uncompactsIXToVIIII
-    ck_assert_str_eq(uncompact("IX"), "VIIII");
-
-#test uncompactsXLToXXXX
-    ck_assert_str_eq(uncompact("XL"), "XXXX");
-
-#test uncompactsXCToLXXXX
-    ck_assert_str_eq(uncompact("XC"), "LXXXX");
-
-#test uncompactsCDToCCCC
-    ck_assert_str_eq(uncompact("CD"), "CCCC");
-
-#test uncompactsCMToDCCCC
-    ck_assert_str_eq(uncompact("CM"), "DCCCC");
-
 #test sortsBySymbolValueInDescendingOrder
     char input[] = "IXVDLCM";
     ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
 
-#test groupsIIIIIAsV
-        ck_assert_str_eq(group("IIIII"), "V");
-
-#test groupsVVAsX
-        ck_assert_str_eq(group("VV"), "X");
-
-#test groupsXXXXAsL
-        ck_assert_str_eq(group("XXXXX"), "L");
-
-#test groupsLLAsC
-        ck_assert_str_eq(group("LL"), "C");
-
-#test groupsCCCCCAsD
-        ck_assert_str_eq(group("CCCCC"), "D");
-
-#test groupsDDAsM
-        ck_assert_str_eq(group("DD"), "M");
-
-#test uncompactsIIIIToIV
-      ck_assert_str_eq(compact("IIII"), "IV");
-
-#test uncompactsVIIIIToIX
-      ck_assert_str_eq(compact("VIIII"), "IX");
-
-#test uncompactsXXXXToXL
-      ck_assert_str_eq(compact("XXXX"), "XL");
-
-#test uncompactsLXXXXToXC
-      ck_assert_str_eq(compact("LXXXX"), "XC");
-
-#test uncompactsCCCCToCD
-      ck_assert_str_eq(compact("CCCC"), "CD");
-
-#test uncompactsDCCCCToCM
-      ck_assert_str_eq(compact("DCCCC"), "CM");
-
 #test addsTwoRomanNumeralsTogether
       ck_assert_str_eq(add("CCCLXIX", "DCCCXLV"), "MCCXIV");
+      ck_assert_str_eq(add("VI", "IV"), "X");
