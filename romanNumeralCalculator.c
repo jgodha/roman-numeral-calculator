@@ -67,3 +67,7 @@ char* compact(char *a) {
   }
   return a;
 }
+
+char* subtract(char *a, char *b) {
+  return "";
+}

@@ -10,3 +10,6 @@
 #test addsTwoRomanNumeralsTogether
       ck_assert_str_eq(add("CCCLXIX", "DCCCXLV"), "MCCXIV");
       ck_assert_str_eq(add("VI", "IV"), "X");
+
+#test subtractsTheSecondRomanNumeralFromTheFirstOne
+    ck_assert_str_eq(subtract("DLX", "CLX"), "CCCC");
