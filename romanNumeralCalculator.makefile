@@ -15,10 +15,14 @@ romanNumeralCalculator.o: romanNumeralCalculator.c romanNumeralCalculator.h
 stringUtils.o: stringUtils.c stringUtils.h
 	gcc $(CFLAGS) -c stringUtils.c
 
-test: romanNumeralCalculator-test
+test: romanNumeralCalculator-test stringUtils-test
 
 romanNumeralCalculator-test: romanNumeralCalculator-test.o romanNumeralCalculator.o  stringUtils.o
 	gcc -o romanNumeralCalculator-test romanNumeralCalculator.o romanNumeralCalculator-test.o  stringUtils.o $(LIBS)
-
 romanNumeralCalculator-test.o: romanNumeralCalculator-test.c romanNumeralCalculator.h
 	gcc $(CFLAGS) -c romanNumeralCalculator-test.c
+
+stringUtils-test: stringUtils-test.o stringUtils.o
+	gcc -o stringUtils-test stringUtils.o stringUtils-test.o $(LIBS)
+stringUtils-test.o: stringUtils-test.c stringUtils.h
+	gcc $(CFLAGS) -c stringUtils-test.c

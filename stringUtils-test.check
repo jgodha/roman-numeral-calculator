@@ -1,0 +1,21 @@
+#include "stdlib.h"
+#include "stringUtils.h"
+
+#test concatenatesTwoStrings
+    char *result = malloc(10);
+    concatenate("X", "V", result);
+    ck_assert_str_eq(result, "XV");
+
+#test removesMatchingCharactersFromSuppliedStrings
+    char a[] = "ACDLM";
+    char b[] = "BALXCA";
+    removeMatchingChars(a, b);
+    ck_assert_str_eq(a, "DM");
+    ck_assert_str_eq(b, "BXA");
+
+#test replacesSpeciedSubtringWithSpecifiedSubStringInThePassedInString
+    char *orig = "ReplaceABCWithXYZ";
+    char *rep = "ABC";
+    char *with = "XYZ";
+    char *result = str_replace(orig, rep, with);
+    ck_assert_str_eq(result, "ReplaceXYZWithXYZ");

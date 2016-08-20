@@ -1,15 +1,6 @@
 #include "stdlib.h"
 #include "romanNumeralCalculator.h"
 
-#test simplyConcatenatesTwoStrings
-    char *result = malloc(10);
-    concatenate("X", "V", result);
-    ck_assert_str_eq(result, "XV");
-
-#test sortsBySymbolValueInDescendingOrder
-    char input[] = "IXVDLCM";
-    ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
-
 #test addsTwoRomanNumeralsTogether
     char *result = malloc(100);
     add("CCCLXIX", "DCCCXLV", result);

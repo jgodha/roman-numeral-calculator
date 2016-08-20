@@ -1,7 +1,40 @@
 #include "stdlib.h"
 #include "string.h"
 
-/* http://stackoverflow.com/a/779960 */
+void concatenate(char *a, char *b, char * result) {
+    result[0] = '\0';
+    strcat(result, a);
+    strcat(result, b);
+}
+
+void removeSpaces(char str[]) {
+  int count = 0;
+  int i;
+  for(i=0; i< strlen(str); i++) {
+    if(str[i] != ' ') {
+      str[count++] = str[i];
+    }
+  }
+  str[count] = '\0';
+}
+
+void removeMatchingChars(char a[], char b[]) {
+  int lenA = strlen(a);
+  int lenB = strlen(b);
+  int i, j;
+  for(i=0; i<lenA; i++) {
+    for(j=0; j<lenB; j++) {
+      if(b[j] == a[i]) {
+        b[j] = ' ';
+        a[i] = ' ';
+      }
+    }
+  }
+  removeSpaces(a);
+  removeSpaces(b);
+}
+
+/* Below function has been copied from - http://stackoverflow.com/a/779960 */
 char *str_replace(char *orig, char *rep, char *with) {
     char *result; // the return string
     char *ins;    // the next insert point

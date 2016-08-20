@@ -3,7 +3,6 @@
 #include "stringUtils.h"
 #include "romanNumeralCalculator.h"
 
-/* TODO figure out how to declare these symbols in a Map-like structure */
 const char ROMAN[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
 const int NUM_OF_PATTERNS = 6;
@@ -13,30 +12,6 @@ char* UNCOMPACT_PATTERNS[] = { "VIIII", "IIII", "LXXXX", "XXXX", "DCCCC", "CCCC"
 
 char* GROUPS[] = { "V", "X", "L", "C", "D", "M" };
 char* GROUP_MEMBERS[] = { "IIIII", "VV", "XXXXX", "LL", "CCCCC", "DD" };
-
-void add(char *a, char *b, char* result) {
-  concatenate(uncompact(a), uncompact(b), result);
-
-  char *output = sortByValueDescending(result);
-
-  output = compact(group(output));
-
-  strcpy(result, output);
-}
-
-char* uncompact(char *a) {
-  int i;
-  for (i=0; i<NUM_OF_PATTERNS; i++) {
-    a = str_replace(a, COMPACT_PATTERNS[i], UNCOMPACT_PATTERNS[i]);
-  }
-  return a;
-}
-
-void concatenate(char *a, char *b, char * result) {
-    result[0] = '\0';
-    strcat(result, a);
-    strcat(result, b);
-}
 
 int findIndex(char value, const char array[]) {
    int i;
@@ -58,14 +33,6 @@ char* sortByValueDescending(char *a) {
     return a;
 }
 
-char* group(char *a) {
-  int i;
-  for (i=0; i<NUM_OF_PATTERNS; i++) {
-    a = str_replace(a, GROUP_MEMBERS[i], GROUPS[i]);
-  }
-  return a;
-}
-
 char* compact(char *a) {
   int i;
   for (i=0; i<NUM_OF_PATTERNS; i++) {
@@ -74,31 +41,20 @@ char* compact(char *a) {
   return a;
 }
 
-void removeSpaces(char str[]) {
-  int count = 0;
+char* uncompact(char *a) {
   int i;
-  for(i=0; i< strlen(str); i++) {
-    if(str[i] != ' ') {
-      str[count++] = str[i];
-    }
+  for (i=0; i<NUM_OF_PATTERNS; i++) {
+    a = str_replace(a, COMPACT_PATTERNS[i], UNCOMPACT_PATTERNS[i]);
   }
-  str[count] = '\0';
+  return a;
 }
 
-void removeMatchingChars(char a[], char b[]) {
-  int lenA = strlen(a);
-  int lenB = strlen(b);
-  int i, j;
-  for(i=0; i<lenA; i++) {
-    for(j=0; j<lenB; j++) {
-      if(b[j] == a[i]) {
-        b[j] = ' ';
-        a[i] = ' ';
-      }
-    }
+char* group(char *a) {
+  int i;
+  for (i=0; i<NUM_OF_PATTERNS; i++) {
+    a = str_replace(a, GROUP_MEMBERS[i], GROUPS[i]);
   }
-  removeSpaces(a);
-  removeSpaces(b);
+  return a;
 }
 
 char* ungroup(char *str) {
@@ -109,14 +65,25 @@ char* ungroup(char *str) {
   return str;
 }
 
+void add(char *a, char *b, char* result) {
+  concatenate(uncompact(a), uncompact(b), result);
+
+  char *output = sortByValueDescending(result);
+
+  output = compact(group(output));
+
+  strcpy(result, output);
+}
+
 void subtract(char a[], char b[], char* result) {
   a = uncompact(a);
   b = uncompact(b);
   removeMatchingChars(a, b);
 
   while(strlen(b) != 0) {
-    a = ungroup(a);
-    removeMatchingChars(a, b);
+    //TODO handle the case when b > a
+      a = ungroup(a);
+      removeMatchingChars(a, b);
   }
 
   a = compact(group(a));
