@@ -1,3 +1,4 @@
+#include "stdlib.h"
 #include "romanNumeralCalculator.h"
 
 #test simplyConcatenatesTwoStrings
@@ -12,4 +13,6 @@
       ck_assert_str_eq(add("VI", "IV"), "X");
 
 #test subtractsTheSecondRomanNumeralFromTheFirstOne
-    ck_assert_str_eq(subtract("DLX", "CLX"), "CCCC");
+    char *result = malloc(100);
+    subtract("DLX", "CLX", result);
+    ck_assert_str_eq(result, "CD");

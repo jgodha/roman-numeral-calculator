@@ -7,10 +7,12 @@
 const char ROMAN[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
 const int NUM_OF_PATTERNS = 6;
-char* COMPACT_PATTERNS[] = { "IV", "IX", "XL", "XC", "CD", "CM" };
-char* UNCOMPACT_PATTERNS[] = { "IIII", "VIIII", "XXXX", "LXXXX", "CCCC", "DCCCC" };
-char* GROUPABLE_PATTERNS[] = { "IIIII", "VV", "XXXXX", "LL", "CCCCC", "DD" };
+
+char* COMPACT_PATTERNS[] = { "IX", "IV", "XC", "XL", "CM", "CD"};
+char* UNCOMPACT_PATTERNS[] = { "VIIII", "IIII", "LXXXX", "XXXX", "DCCCC", "CCCC" };
+
 char* GROUPS[] = { "V", "X", "L", "C", "D", "M" };
+char* GROUP_MEMBERS[] = { "IIIII", "VV", "XXXXX", "LL", "CCCCC", "DD" };
 
 char* add(char *a, char *b) {
   char *result = sortByValueDescending(concatenate(uncompact(a), uncompact(b)));
@@ -33,10 +35,11 @@ char* concatenate(char *a, char *b) {
     return result;
 }
 
-int findIndex(char value) {
+int findIndex(char value, const char array[]) {
    int i;
-   for (i=0; i<sizeof(ROMAN); i++) {
-  	 if (ROMAN[i] == value) {
+   int size = strlen(array);
+   for (i=0; i<size; i++) {
+  	 if (array[i] == value) {
   	    return i;
   	 }
    }
@@ -44,7 +47,7 @@ int findIndex(char value) {
 }
 
 int compare(const void *a, const void *b) {
-    return findIndex(*(const char *)b) - findIndex(*(const char *)a);
+    return findIndex(*(const char *)b, ROMAN) - findIndex(*(const char *)a, ROMAN);
 }
 
 char* sortByValueDescending(char *a) {
@@ -55,7 +58,7 @@ char* sortByValueDescending(char *a) {
 char* group(char *a) {
   int i;
   for (i=0; i<6; i++) {
-    a = str_replace(a, GROUPABLE_PATTERNS[i], GROUPS[i]);
+    a = str_replace(a, GROUP_MEMBERS[i], GROUPS[i]);
   }
   return a;
 }
@@ -68,6 +71,52 @@ char* compact(char *a) {
   return a;
 }
 
-char* subtract(char *a, char *b) {
-  return "";
+void removeSpaces(char str[]) {
+  int count = 0;
+  int i;
+  for(i=0; i< strlen(str); i++) {
+    if(str[i] != ' ') {
+      str[count++] = str[i];
+    }
+  }
+  str[count] = '\0';
+}
+
+void removeMatchingChars(char a[], char b[]) {
+  int lenA = strlen(a);
+  int lenB = strlen(b);
+  int i, j;
+  for(i=0; i<lenA; i++) {
+    for(j=0; j<lenB; j++) {
+      if(b[j] == a[i]) {
+        b[j] = ' ';
+        a[i] = ' ';
+      }
+    }
+  }
+  removeSpaces(a);
+  removeSpaces(b);
+}
+
+char* ungroup(char *str) {
+  int i;
+  for (i=0; i<6; i++) {
+    str = str_replace(str, GROUPS[i], GROUP_MEMBERS[i]);
+  }
+  return str;
+}
+
+void subtract(char a[], char b[], char* result) {
+  a = uncompact(a);
+  b = uncompact(b);
+  removeMatchingChars(a, b);
+
+  while(strlen(b) != 0) {
+    a = ungroup(a);
+    removeMatchingChars(a, b);
+  }
+
+  a = compact(group(a));
+
+  strcpy(result, a);
 }
