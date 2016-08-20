@@ -14,25 +14,28 @@ char* UNCOMPACT_PATTERNS[] = { "VIIII", "IIII", "LXXXX", "XXXX", "DCCCC", "CCCC"
 char* GROUPS[] = { "V", "X", "L", "C", "D", "M" };
 char* GROUP_MEMBERS[] = { "IIIII", "VV", "XXXXX", "LL", "CCCCC", "DD" };
 
-char* add(char *a, char *b) {
-  char *result = sortByValueDescending(concatenate(uncompact(a), uncompact(b)));
-  return compact(group(result));
+void add(char *a, char *b, char* result) {
+  concatenate(uncompact(a), uncompact(b), result);
+
+  char *output = sortByValueDescending(result);
+
+  output = compact(group(output));
+
+  strcpy(result, output);
 }
 
 char* uncompact(char *a) {
   int i;
-  for (i=0; i<6; i++) {
+  for (i=0; i<NUM_OF_PATTERNS; i++) {
     a = str_replace(a, COMPACT_PATTERNS[i], UNCOMPACT_PATTERNS[i]);
   }
   return a;
 }
 
-char* concatenate(char *a, char *b) {
-    char *result = malloc(sizeof(a) + sizeof(b) + 1);
+void concatenate(char *a, char *b, char * result) {
     result[0] = '\0';
     strcat(result, a);
     strcat(result, b);
-    return result;
 }
 
 int findIndex(char value, const char array[]) {
@@ -57,7 +60,7 @@ char* sortByValueDescending(char *a) {
 
 char* group(char *a) {
   int i;
-  for (i=0; i<6; i++) {
+  for (i=0; i<NUM_OF_PATTERNS; i++) {
     a = str_replace(a, GROUP_MEMBERS[i], GROUPS[i]);
   }
   return a;
@@ -65,7 +68,7 @@ char* group(char *a) {
 
 char* compact(char *a) {
   int i;
-  for (i=0; i<6; i++) {
+  for (i=0; i<NUM_OF_PATTERNS; i++) {
     a = str_replace(a, UNCOMPACT_PATTERNS[i], COMPACT_PATTERNS[i]);
   }
   return a;
@@ -100,7 +103,7 @@ void removeMatchingChars(char a[], char b[]) {
 
 char* ungroup(char *str) {
   int i;
-  for (i=0; i<6; i++) {
+  for (i=0; i<NUM_OF_PATTERNS; i++) {
     str = str_replace(str, GROUPS[i], GROUP_MEMBERS[i]);
   }
   return str;

@@ -2,15 +2,18 @@
 #include "romanNumeralCalculator.h"
 
 #test simplyConcatenatesTwoStrings
-    ck_assert_str_eq(concatenate("X", "V"), "XV");
+    char *result = malloc(10);
+    concatenate("X", "V", result);
+    ck_assert_str_eq(result, "XV");
 
 #test sortsBySymbolValueInDescendingOrder
     char input[] = "IXVDLCM";
     ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
 
 #test addsTwoRomanNumeralsTogether
-      ck_assert_str_eq(add("CCCLXIX", "DCCCXLV"), "MCCXIV");
-      ck_assert_str_eq(add("VI", "IV"), "X");
+    char *result = malloc(100);
+    add("CCCLXIX", "DCCCXLV", result);
+    ck_assert_str_eq(result, "MCCXIV");
 
 #test subtractsTheSecondRomanNumeralFromTheFirstOne
     char *result = malloc(100);
