@@ -1,5 +1,78 @@
 #include "romanSymbolUtils.h"
 
+#test compactsVIIIIToIX
+    char *input = "VIIII";
+    ck_assert_str_eq(compact(input), "IX");
+
+#test compactsIIIIToIV
+    ck_assert_str_eq(compact("IIII"), "IV");
+
+#test compactsLXXXXToXC
+    ck_assert_str_eq(compact("LXXXX"), "XC");
+
+#test compactsXXXXToXL
+    ck_assert_str_eq(compact("XXXX"), "XL");
+
+#test compactsDCCCCToCM
+    ck_assert_str_eq(compact("DCCCC"), "CM");
+
+#test compactsCCCCToCD
+    ck_assert_str_eq(compact("CCCC"), "CD");
+
+#test uncompactsIXToVIIII
+    ck_assert_str_eq(uncompact("IX"), "VIIII");
+
+#test uncompactsIVToIIII
+    ck_assert_str_eq(uncompact("IV"), "IIII");
+
+#test uncompactsXCToLXXXX
+    ck_assert_str_eq(uncompact("XC"), "LXXXX");
+
+#test uncompactsXLToXXXX
+    ck_assert_str_eq(uncompact("XL"), "XXXX");
+
+#test uncompactsCMToDCCCC
+    ck_assert_str_eq(uncompact("CM"), "DCCCC");
+
+#test uncompactsCDToCCCC
+    ck_assert_str_eq(uncompact("CD"), "CCCC");
+
+#test groupsIIIIIToV
+    ck_assert_str_eq(group("IIIII"), "V");
+
+#test groupsVVToX
+    ck_assert_str_eq(group("VV"), "X");
+
+#test groupsXXXXXToL
+    ck_assert_str_eq(group("XXXXX"), "L");
+
+#test groupsLLToC
+    ck_assert_str_eq(group("LL"), "C");
+
+#test groupsCCCCCToD
+    ck_assert_str_eq(group("CCCCC"), "D");
+
+#test groupsDDToM
+    ck_assert_str_eq(group("DD"), "M");
+
+#test ungroupsVToIIIII
+    ck_assert_str_eq(ungroup("V"), "IIIII");
+
+#test ungroupsXToVV
+    ck_assert_str_eq(ungroup("X"), "VV");
+
+#test ungroupsLToXXXXX
+    ck_assert_str_eq(ungroup("L"), "XXXXX");
+
+#test ungroupsCToLL
+    ck_assert_str_eq(ungroup("C"), "LL");
+
+#test ungroupsDToCCCCC
+    ck_assert_str_eq(ungroup("D"), "CCCCC");
+
+#test ungroupsMToDD
+    ck_assert_str_eq(ungroup("M"), "DD");
+
 #test sortsBySymbolValueInDescendingOrder
     char input[] = "IXVDLCM";
     ck_assert_str_eq(sortByValueDescending(input), "MDCLXVI");
