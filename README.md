@@ -9,13 +9,13 @@ Developed in C programming language in the following environment -
 -	Check	unit	testing	framework	(	https://libcheck.github.io/check/)
 
 Do the following to run the program
-<code>
+```
 checkmk romanNumeralCalculator-test.check >romanNumeralCalculator-test.c
 checkmk stringUtils-test.check >stringUtils-test.c
 checkmk romanSymbolUtils-test.check >romanSymbolUtils-test.c
 
 make -f romanNumeralCalculator.makefile
 make -f romanNumeralCalculator.makefile test
-</code>
-You can run the main using <code>./romanNumeralCalculator</code>
-Tests can be executed as follows - <code>./romanNumeralCalculator-test, .romanSymbolUtils-test, .stringUtils-test</code>
+```
+<p>You can run the main using ```./romanNumeralCalculator```</p>
+<p>Tests can be executed as follows - ```./romanNumeralCalculator-test, .romanSymbolUtils-test, .stringUtils-test</code>```</p>
