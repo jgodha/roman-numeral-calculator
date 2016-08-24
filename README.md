@@ -1,6 +1,6 @@
 Roman Numeral Calculator
 
-Supports adding and subtracting two Roman numerals. The program currently does not validate the user input.
+Supports adding and subtracting two Roman numerals. The program currently does not validate user input.
 
 Developed in C programming language in the following environment -
 - Ubuntu	Linux 14.04
