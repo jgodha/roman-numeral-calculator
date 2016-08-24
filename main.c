@@ -1,20 +1,26 @@
 #include "stdio.h"
-#include "romanNumeralCalculator.h"
 #include "stdlib.h"
+#include "string.h"
+#include "romanNumeralCalculator.h"
 
 int main(void) {
   char *result = malloc(100);
+  char a[20];
+  char b[20];
 
-  char *a = "CCCLXIX";//"CXXIX";//"D";
-  char *b = "DCCCXLV";//"XLIII";//"X";
+  printf("Enter the first numeral: \n");
+  fgets(a, 20, stdin);
+  a[strcspn(a, "\n")] = 0;
+
+  printf("Enter the second numeral: \n");
+  fgets(b, 20, stdin);
+  b[strcspn(b, "\n")] = 0;
 
   add(a, b, result);
-  printf("a+b=%s\n", result);
+  printf("%s+%s=%s\n", a, b, result);
 
-  a = "D";//"CXXIX";//"D";
-  b = "X";//"XLIII";//"X";
   subtract(a, b, result);
-  printf("a-b=%s\n", result);
+  printf("%s-%s=%s\n", a, b, result);
 
   free(result);
   return 0;
