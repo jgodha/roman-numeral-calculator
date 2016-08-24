@@ -8,7 +8,7 @@ Developed in C programming language in the following environment -
 -	GNU	Make
 -	Check	unit	testing	framework	(	https://libcheck.github.io/check/)
 
-Do the following to run the program
+Do the following to compile the program
 ```
 checkmk romanNumeralCalculator-test.check >romanNumeralCalculator-test.c
 checkmk stringUtils-test.check >stringUtils-test.c
@@ -17,5 +17,14 @@ checkmk romanSymbolUtils-test.check >romanSymbolUtils-test.c
 make -f romanNumeralCalculator.makefile
 make -f romanNumeralCalculator.makefile test
 ```
-<p>You can run the main using ```./romanNumeralCalculator```</p>
-<p>Tests can be executed as follows - ```./romanNumeralCalculator-test, .romanSymbolUtils-test, .stringUtils-test</code>```</p>
+<p>You can run the main using 
+```
+./romanNumeralCalculator
+```
+<p>
+<p>
+Tests can be executed as follows - 
+```
+./romanNumeralCalculator-test, .romanSymbolUtils-test, .stringUtils-test</code>
+```
+<p>
