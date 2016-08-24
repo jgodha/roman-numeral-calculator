@@ -1,4 +1,4 @@
-<h3>Roman Numeral Calculator<h3>
+<h3>Roman Numeral Calculator</h3>
 
 Supports adding and subtracting two Roman numerals. The program currently does not validate user input.
 
