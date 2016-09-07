@@ -25,6 +25,6 @@ make -f romanNumeralCalculator.makefile test
 <p>
 Tests can be executed as follows - 
 ```
-./romanNumeralCalculator-test, .romanSymbolUtils-test, .stringUtils-test
+./romanNumeralCalculator-test; ./romanSymbolUtils-test; ./stringUtils-test
 ```
 <p>
